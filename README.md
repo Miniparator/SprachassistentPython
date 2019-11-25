@@ -26,8 +26,11 @@ Dann kann mit exec() das selbst geschriebene Unterprogramm(z.B.: start(etwas)) a
 
 
 # Benutzung
+Wichtig ist, dass sich sprachassistent.py, CreateBrain.py und errors.py in dem gleichen 
+Verzeichniswie das Programm befinden. Das sind die drei Dateien die den Sprachassistenten
+bilden.<br>
 Zuerst muss die Klasse importiert werden:<br>
-from sprachassistent import Sprachassistent,StateChange<br>
+from sprachassistent import Sprachassistent<br>
 
 Dann kann ein Sprachassistent Objekt erstellt werden.
 Es wird der Name und die Sprache sowie optional ob er direkt aktiviert ist(default ist False) benötigt.<br>
@@ -59,10 +62,13 @@ Trainiert Chatterbot mit dem angegebenen Gespräch. Es sollte der name einer Tex
 Zeile ein Satz steht(die datei muss im Ordner GesprächeZumTrainieren sein).<br>
 <br>
 example.executeSQL(string SQL Statement)<br>
-Führt das gegebene SQL Statement an der Brain Datenbank aus. Die Ergebnisse werden zurückgegeben.<br>
+Führt das gegebene SQL Statement an der Brain Datenbank aus. Die Ergebnisse 
+werden zurückgegeben.<br>
 <br>
 example.listen()<br>
-Hört solange zu bis etwas gesagt wurde. Gibt das als String zurück.<br>
+Hört solange zu bis etwas gesagt wurde und gibt das als String zurück. Es kann 
+auch gerne eine
+andere, selbsgeschriebene, Spracherkennung genutzt werden.<br>
 <br>
 
 # Befehle zur Datenbank hinzufügen
