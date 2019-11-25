@@ -1,3 +1,7 @@
+# Chatterbot-Files
+sentence_tokenizer.pickle
+Brain.sqlite
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
