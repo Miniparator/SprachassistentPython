@@ -60,7 +60,14 @@ Zeile ein Satz steht(die datei muss im Ordner GesprächeZumTrainieren sein).<br>
 <br>
 example.executeSQL(string SQL Statement)<br>
 Führt das gegebene SQL Statement an der Brain Datenbank aus. Die Ergebnisse werden zurückgegeben.<br>
+<br>
+example.listen()<br>
+Hört solange zu bis etwas gesagt wurde. Gibt das als String zurück.<br>
+<br>
 
 # Befehle zur Datenbank hinzufügen
 
 # Status
+Ein Sprachassistenten aktiviert man normalerweise mit OK [Name]. Wenn man zu dem Sprachassistenten hier ok example sagt und
+daraus einen Befehl machen will, gibt es einen StateChange Error. Dieser kann mit except abgefangen werden. So kann
+erkannt werden, ob der Assistent aktiv ist, oder nicht. Nach einiger Zeit kann man ihn dann selber deaktivieren.
