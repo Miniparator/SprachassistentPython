@@ -32,7 +32,7 @@ bilden.<br>
 Zuerst muss die Klasse importiert werden:<br>
 from sprachassistent import Sprachassistent<br>
 
-Dann kann ein Sprachassistent Objekt erstellt werden.
+Dann kann ein Sprachassistent erstellt werden.
 Es wird der Name und die Sprache sowie optional ob er direkt aktiviert ist(default ist False) benötigt.<br>
 Beispiel: <br>
 example = Sprachassistent("example","german",False)<br>
@@ -65,6 +65,11 @@ example.executeSQL(string SQL Statement)<br>
 Führt das gegebene SQL Statement an der Brain Datenbank aus. Die Ergebnisse 
 werden zurückgegeben.<br>
 <br>
+
+# Grafisches Interface
+
+# Spracherkennung
+Der Sprachassistent bringt einige Methoden zur Spracherkennung mit Speech Recognition mit.<br>
 example.listen()<br>
 Hört solange zu bis etwas gesagt wurde und gibt das als String zurück. Es kann 
 auch gerne eine
