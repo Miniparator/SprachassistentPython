@@ -1,3 +1,7 @@
+# Patchnotes
+Beispiele und Beispiel-Funktionen sind 
+jetzt <a href="https://github.com/Miniparator/FunktionenFuerSprachassistent/">HIER<a> verfügbar!
+
 # SprachassistentPython
 Ein Sprachassistent für Python3.X
 
