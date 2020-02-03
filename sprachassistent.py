@@ -228,19 +228,16 @@ class Sprachassistent():
         #return words
 
     def startListener(self):
-
         thrd = Thread(target=self.listen, args=())
         thrd.start()
 
     def stopListener():
-
         global listenerRunning
         listenerRunning = False
         print("Beendigungssignal gesendet")
 
 
     def listenerFinished(self):
-
         global publicWords
         global finishedListener
 
@@ -250,7 +247,6 @@ class Sprachassistent():
             return False
 
     def getListener(self):
-
         global publicWords
         global finishedListener
 
@@ -260,12 +256,24 @@ class Sprachassistent():
             return None
 
     def Interface(self, name, width, height):
-
+        connection = sqlite3.connect("Brain.sqlite")
+        cursor = connection.cursor()
+        window_height = height
         global interfaceOnline
 
         ####Benoetigte Unterprogramme####
         def execute(event):
-            entry.delete(0, 'end')
+            entry_content = entry.get("1.0",'end-1c')
+            entry.delete('1.0', END)
+            #exec(entry_content)
+            command = entry_content.split("/")[0]
+            commando = entry_content.split("/")[1]
+            if command == "sql":
+                cursor.execute(commando) #SQL ausfuehren
+                result = cursor.fetchall()  #Ergebnisse in Array packen
+                print(result)
+                res.delete(1.0, END)
+                res.insert(END, result)
         def exit():
             global interfaceOnline
             interfaceOnline = False
@@ -274,20 +282,20 @@ class Sprachassistent():
 
         ####Fenster erstellen####
         window = Tk()
-        window.title('Controlpanel '+name)
+        window.title('Console ' + name)
         window.geometry(str(height) + "x" + str(width))
         #########################
 
         ####Elemente erstellen####
-##        Label(window, text="Enter Command:").place(x=width/2-50, y=0, width=100, height=30)
-        Label(window, text="Under Construction").place(x=width/2-50, y=0, width=100, height=30)
+        Label(window, text="Enter Command:").place(x=(width/2-50)-50, y=0, width=180, height=30)
 
-        entry = Entry(window)
+        entry = Text(window, width=10)
         entry.bind("<Return>", execute)
-        entry.place(x=width/2-50, y=20, width=200, height=20)
+        entry.place(x=(width/2-50)-50, y=20, height=200, width=300)
 
-        res = Label(window)
-        res.place(x=width/2-50, y=40, width=100, height=30)
+        res = Text(window)
+        res.pack()
+        res.place(x=(width/2-50)-50, y=240, width=300, height=window_height)
 
         exitButton = Button(master=window, text='Close', command=exit)
         exitButton.place(x=width-90, y=height-40, width=80, height=30)
@@ -295,6 +303,7 @@ class Sprachassistent():
 
         while interfaceOnline:
             window.update()
+        window.destroy()    #Fenster schliessen
 
     def startInterface(self,height,width):
         global interfaceOnline
@@ -305,6 +314,7 @@ class Sprachassistent():
     def stopInterface(self):
         global interfaceOnline
         interfaceOnline = False
+
 
 
 
