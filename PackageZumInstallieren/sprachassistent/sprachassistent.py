@@ -74,6 +74,7 @@ class Sprachassistent():
         #if True:
             if (string.split(" ")[0] == "ok" or string.split(" ")[0] == "okay") and string.split(" ")[1] == self.Name:
                 self.Active = not self.Active
+                return ""
                 #raise StateChange("")
 
             else:
