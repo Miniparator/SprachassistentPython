@@ -21,6 +21,11 @@ import os
 import sqlite3
 ####################################
 
+#Setup Brain                                            #Wenn die Datenbank vorhanden ist, verbindet sich das Programm mit ihr
+connection = sqlite3.connect("Brain.sqlite")
+cursor = connection.cursor()
+print("Succesfully connected to Brain.sqlite!")
+##################
 
 ####Setup Chatterbot####
 chatbot = ChatBot('chatbot')                     #Chatbot erstellen
@@ -299,8 +304,3 @@ class Sprachassistent():
     def stopInterface(self):
         global interfaceOnline
         interfaceOnline = False
-
-
-
-
-
