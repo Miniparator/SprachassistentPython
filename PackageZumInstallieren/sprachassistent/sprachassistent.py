@@ -21,8 +21,16 @@ import os
 import sqlite3
 ####################################
 
-#Setup Brain                                            #Wenn die Datenbank vorhanden ist, verbindet sich das Programm mit ihr
-connection = sqlite3.connect("Brain.sqlite")
+#Setup Brain
+filePath = ""
+pathParts = os.path.abspath(sys.argv[0]).split("/")
+for i in range(len(pathParts) - 1):
+    filePath += "/" + pathParts[i]
+
+filePath = filePath[1:]
+brainPath = filePath + "/" + "Brain.sqlite"
+                                         #Wenn die Datenbank vorhanden ist, verbindet sich das Programm mit ihr
+connection = sqlite3.connect(brainPath)
 cursor = connection.cursor()
 print("Succesfully connected to Brain.sqlite!")
 ##################
@@ -49,8 +57,8 @@ class Sprachassistent():
         self.Name = name
         self.Language = language
         self.Active = active
-        self.__version__ = "0.0.3"
-        self.__author__ = "Miniparator"
+        self.__version__ = "0.0.4"
+        self.__author__ = "e4rdx"
         self.Schwelle = schwelle
 
     def infos(self):
@@ -73,9 +81,8 @@ class Sprachassistent():
         #if string.split(" ")[1] == self.Name :
         #if True:
             if (string.split(" ")[0] == "ok" or string.split(" ")[0] == "okay") and string.split(" ")[1] == self.Name:
-                self.Active = not self.Active
+                self.Active = True
                 return ""
-                #raise StateChange("")
 
             else:
                 erfolg = False

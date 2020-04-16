@@ -1,9 +1,18 @@
 import sqlite3
 from pathlib import Path
+import os, sys
 
 #Setup Brain
-Brain = Path("Brain.sqlite")
-if Brain.is_file():                                                 #Wenn die Datenbank vorhanden ist, verbindet sich das Programm mit ihr
+filePath = ""
+pathParts = os.path.abspath(sys.argv[0]).split("/")
+for i in range(len(pathParts) - 1):
+    filePath += "/" + pathParts[i]
+
+filePath = filePath[1:]
+brainPath = filePath + "/" + "Brain.sqlite"
+
+Brain = Path(brainPath)
+if Brain.is_file():                                            #Wenn die Datenbank vorhanden ist, verbindet sich das Programm mit ihr
     connection = sqlite3.connect("Brain.sqlite")
     cursor = connection.cursor()
 elif input("Soll eine neue Datenbank angelegt werden(j/n)") == "j": #Wenn eine neue Datenbank angelegt werden soll...
@@ -32,4 +41,3 @@ else:                                                               #Ausgeben we
     print("Es wurde keine Verbindung zu einer Datenbank hergestellt. Das Programm wird verlassen.")
     exit()
 ##################
-
