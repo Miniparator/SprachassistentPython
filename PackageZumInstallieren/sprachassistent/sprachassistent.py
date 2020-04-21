@@ -76,6 +76,12 @@ class Sprachassistent():
         else:
             return False
 
+    def setActive(self):
+        self.Active = True
+
+    def setInactive(self):
+        self.Active = False
+
     def createCommand(self, string) :
 
         #if string.split(" ")[1] == self.Name :
