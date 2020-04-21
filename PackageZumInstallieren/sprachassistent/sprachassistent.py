@@ -68,7 +68,7 @@ class Sprachassistent():
             "schwelle": self.Schwelle,
             "active": self.Active
         }
-        return result
+        return results
         """
         print("Ich heisse", self.Name)
         print("Ich bin", self.Language)
