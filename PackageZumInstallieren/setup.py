@@ -1,12 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+long_description = "Siehe Readme"
 
 setuptools.setup(
     name="PythonSprachassistent",
     version="0.0.3",
-    author="Miniparator",
+    author="e4rdx",
     description="Ein Sprachassistent fuer Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -16,5 +15,5 @@ setuptools.setup(
         "License :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.0',
 )
