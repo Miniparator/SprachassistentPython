@@ -62,6 +62,14 @@ class Sprachassistent():
         self.Schwelle = schwelle
 
     def infos(self):
+        results = {
+            "name": self.Name,
+            "language": self.Language,
+            "schwelle": self.Schwelle,
+            "active": self.Active
+        }
+        return result
+        """
         print("Ich heisse", self.Name)
         print("Ich bin", self.Language)
         print("Schwelle ist bei", self.Schwelle)
@@ -69,6 +77,7 @@ class Sprachassistent():
             print("Ich bin aktiv")
         else:
             print("Ich bin nicht aktiv")
+        """
 
     def state(self):
         if self.Active:
