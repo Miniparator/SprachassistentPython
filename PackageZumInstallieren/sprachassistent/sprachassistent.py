@@ -37,9 +37,9 @@ print("Succesfully connected to Brain.sqlite!")
 
 ####Setup Chatterbot####
 chatbot = ChatBot('chatbot')                     #Chatbot erstellen
-corpusTrainer = ChatterBotCorpusTrainer(chatbot) #Trainer erstellen
-corpusTrainer.train("chatterbot.corpus.german")  #Deutsch antrainieren
-listTrainer = ListTrainer(chatbot)
+#corpusTrainer = ChatterBotCorpusTrainer(chatbot) #Trainer erstellen
+#corpusTrainer.train("chatterbot.corpus.german")  #Deutsch antrainieren
+#listTrainer = ListTrainer(chatbot)
 ########################
 
 ####Setup Speech Recognition####
@@ -53,13 +53,14 @@ schwelle = r.energy_threshold
 
 
 class Sprachassistent():
-    def __init__(self, name, language, active=False):
+    def __init__(self, name, language, active=False, chatterbotBot=chatbot):
         self.Name = name
         self.Language = language
         self.Active = active
         self.__version__ = "0.0.4"
         self.__author__ = "e4rdx"
         self.Schwelle = schwelle
+        self.chatbot = chatterbotBot
 
     def infos(self):
         results = {
@@ -69,15 +70,6 @@ class Sprachassistent():
             "active": self.Active
         }
         return results
-        """
-        print("Ich heisse", self.Name)
-        print("Ich bin", self.Language)
-        print("Schwelle ist bei", self.Schwelle)
-        if self.Active :
-            print("Ich bin aktiv")
-        else:
-            print("Ich bin nicht aktiv")
-        """
 
     def state(self):
         if self.Active:
@@ -92,7 +84,6 @@ class Sprachassistent():
         self.Active = False
 
     def createCommand(self, string) :
-
         #if string.split(" ")[1] == self.Name :
         #if True:
             if (string.split(" ")[0] == "ok" or string.split(" ")[0] == "okay") and string.split(" ")[1] == self.Name:
@@ -166,14 +157,24 @@ class Sprachassistent():
 
 
     def answerTo(self,string):
-        return chatbot.get_response(string)     #Antwort mit Chatterbot bekommen
+        return self.chatbot.get_response(string)     #Antwort mit Chatterbot bekommen
+
 
     def trainConversation(self, file):
-        file = "GespraecheZumTrainieren/" + file                #Angeben das die Datei im Gespraeche Ordner ist
+        listTrainer = ListTrainer(self.chatbot)
+        #file = "GespraecheZumTrainieren/" + file                #Angeben der Datei
         conversation = open(file, "r")                          #Gegebene Datei Oeffnen
         conversationAsArray = conversation.read().split("\n")   #Datei lesen und in array speichern
         listTrainer.train(conversationAsArray)                  #Mit dem Array den Chatbot trainieren
         conversation.close()                                    #Datei schliessen
+
+
+    def trainCorpus(self, corpus):
+        corpusTrainer = ChatterBotCorpusTrainer(self.chatbot)
+        try:
+            corpusTrainer.train(corpus)
+        except:
+            print("Es ist ein Fehler aufgetreten, vielleicht ein falscher corpus?")
 
 
     def addCommandVerb(self,grundform,command):
