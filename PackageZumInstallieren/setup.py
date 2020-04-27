@@ -1,6 +1,8 @@
 import setuptools
 
-long_description = "Siehe Readme"
+file = open("README.md","r")
+long_description = file.read()
+file.close()
 
 setuptools.setup(
     name="PythonSprachassistent",
